@@ -13,6 +13,7 @@ app.get("/findColleges", (req, res) => {
 
   if(minPackage<0||maxFees<0){
     res.status(400).send({msg:"invalid request"});
+    return;
   }
 
   console.log(name, state, city, minPackage, maxFees, course, exams);
@@ -28,7 +29,7 @@ app.get("/findColleges", (req, res) => {
   connection
     .find(match)
     .then((data) => res.send(data))
-    .catch((err) => res.status(400).send({ msg: err.code }));
+    .catch((err) => res.status(400).send({ msg: err }));
   //     .aggregate([
   //       {
   //         $match: {
